@@ -3,6 +3,8 @@
 * Discord用簡易読み上げBOT
 * [Open JTalk](http://open-jtalk.sp.nitech.ac.jp/)を使用。
   * https://www.npmjs.com/package/openjtalk
+* nodejs v14.15.1
+* yarn 1.22.10
 
 ## 準備
 
