@@ -11,7 +11,7 @@
 
 1. https://discord.com/developers/applications で、アプリケーションを作る
 1. Botの項目からTOKENをコピー
-1. `config/default.json`に追記。ついでに他も追記。
+1. `config/default.json`ファイルに追記。ついでに他も追記。
 
 ```json
 {
@@ -23,10 +23,10 @@
 
 ## Windows用追加準備
 
-* https://github.com/rosmarinus/jtalkdll/releases からjtalkdll-win-msvcをダウンロード。
+* https://github.com/rosmarinus/jtalkdll/releases から`jtalkdll-win-msvc`をダウンロード。
   * ダウンロード→ https://github.com/rosmarinus/jtalkdll/releases/download/v0.0.63/jtalkdllx64-0.0.63.zip
-* jtalkdllx64-0.0.63.zip の中身を`C:¥open_jtalk`に解凍
-* 以下のディレクトリ構成になってたら正解
+* jtalkdllx64-0.0.63.zip の中身を`C:¥open_jtalk`に解凍。
+* 以下のディレクトリ構成になってたら正解。
 
 ```
 C:¥open_jtalk
@@ -37,7 +37,7 @@ C:¥open_jtalk
   └── voice
 ```
 
-`package.json`ファイルを開き `"openjtalk": "^0.1.6",` の行を削除
+* `package.json`ファイルを開き `"openjtalk": "^0.1.6",` の行を削除。
 
 ```
   "dependencies": {
@@ -45,15 +45,18 @@ C:¥open_jtalk
     "config": "^3.3.6",
     "discord.js": "^12.5.3",
     "ffmpeg-static": "^4.3.0",
-    "openjtalk": "^0.1.6", ← この行を削除
+    "openjtalk": "^0.1.6",      ← この行を削除
     "uuid-v4": "^0.1.0"
   },
 ```
 
-## 起動方法 (macOS, Linux)
+## 起動方法
 
 ```sh
+# 最初だけ
 yarn
+
+# BOT起動
 yarn start
 ```
 
