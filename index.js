@@ -54,6 +54,7 @@ const readMessageQueue = async.queue(function (message, callback) {
 const readMessage = (message, callback)=>{
     const voiceChannel = message.member.voice.channel;
     let content = message.content.replace(/\r?\n/g,"");
+    content = content.replace(/(?:[w|ｗ|Ｗ]?[w|ｗ|Ｗ]+)$/i,"わら");
     mei._makeWav(content, 300, (e,re)=>{
         // console.log(re);
         voiceChannel.join().then(connection => {
