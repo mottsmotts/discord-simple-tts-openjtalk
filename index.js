@@ -4,6 +4,7 @@ const fs = require('fs');
 const http = require('http');
 const discord = require('discord.js');
 const config = require('config');
+const async = require('async');
 
 var OpenJTalk=undefined;
 (process.platform==='win32')? OpenJTalk = require('./openjtalk') : OpenJTalk = require('openjtalk');
@@ -43,22 +44,31 @@ client.on('message', message => {
     const sender = message.member;
     const voiceChannel = sender.voice.channel;
     if(voiceChannel && voiceChannel.name == VOICE_CHANNEL){
-        let content = message.content.replace(/\r?\n/g,"");
-        mei._makeWav(content, 300, (e,re)=>{
-            // console.log(re);
-            voiceChannel.join().then(connection => {
-                const dispatcher = connection.play(re.wav);
-                dispatcher.on('finish', () => {
-                    try {
-                        fs.unlinkSync(re.wav);
-                      } catch(err) {
-                        console.error(err);
-                      }
-                });
-            });
-        });
+        readMessageQueue.push(message);
     }
 });
+// read message queue
+const readMessageQueue = async.queue(function (message, callback) {
+    readMessage(message, callback);
+}, 1);
+const readMessage = (message, callback)=>{
+    const voiceChannel = message.member.voice.channel;
+    let content = message.content.replace(/\r?\n/g,"");
+    mei._makeWav(content, 300, (e,re)=>{
+        // console.log(re);
+        voiceChannel.join().then(connection => {
+            const dispatcher = connection.play(re.wav);
+            dispatcher.on('finish', () => {
+                try {
+                    fs.unlinkSync(re.wav);
+                    callback();
+                  } catch(err) {
+                    console.error(err);
+                  }
+            });
+        });
+    });
+};
 
 // Main
 if(DISCORD_BOT_TOKEN == ""){
