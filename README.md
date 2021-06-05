@@ -2,7 +2,8 @@
 
 * Discord用簡易読み上げBOT
 * [Open JTalk](http://open-jtalk.sp.nitech.ac.jp/)を使用。
-  * https://www.npmjs.com/package/openjtalk
+  * (macOS,Linux) https://www.npmjs.com/package/openjtalk
+  * (Windows) https://github.com/rosmarinus/jtalkdll
 * nodejs v14.15.1
 * yarn 1.22.10
 
@@ -20,7 +21,36 @@
 }
 ```
 
-## 起動方法
+## Windows用追加準備
+
+* https://github.com/rosmarinus/jtalkdll/releases からjtalkdll-win-msvcをダウンロード。
+  * ダウンロード→ https://github.com/rosmarinus/jtalkdll/releases/download/v0.0.63/jtalkdllx64-0.0.63.zip
+* jtalkdllx64-0.0.63.zip の中身を`C:¥open_jtalk`に解凍
+* 以下のディレクトリ構成になってたら正解
+
+```
+C:¥open_jtalk
+  ├── bin
+  ├── dict_utf_8
+  ├── include
+  ├── lib
+  └── voice
+```
+
+`package.json`ファイルを開き `"openjtalk": "^0.1.6",` の行を削除
+
+```
+  "dependencies": {
+    "@discordjs/opus": "^0.5.0",
+    "config": "^3.3.6",
+    "discord.js": "^12.5.3",
+    "ffmpeg-static": "^4.3.0",
+    "openjtalk": "^0.1.6", ← この行を削除
+    "uuid-v4": "^0.1.0"
+  },
+```
+
+## 起動方法 (macOS, Linux)
 
 ```sh
 yarn

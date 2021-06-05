@@ -3,8 +3,10 @@
 const fs = require('fs');
 const http = require('http');
 const discord = require('discord.js');
-const OpenJTalk = require('openjtalk');
 const config = require('config');
+
+var OpenJTalk=undefined;
+(process.platform==='win32')? OpenJTalk = require('./openjtalk') : OpenJTalk = require('openjtalk');
 
 // Settings
 let DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
@@ -41,7 +43,8 @@ client.on('message', message => {
     const sender = message.member;
     const voiceChannel = sender.voice.channel;
     if(voiceChannel && voiceChannel.name == VOICE_CHANNEL){
-        let re = mei._makeWav(message.content, 300, (e,re)=>{
+        let content = message.content.replace(/\r?\n/g,"");
+        mei._makeWav(content, 300, (e,re)=>{
             // console.log(re);
             voiceChannel.join().then(connection => {
                 const dispatcher = connection.play(re.wav);
