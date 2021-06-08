@@ -1,5 +1,6 @@
 {
     "DISCORD_BOT_TOKEN": "",
-    "TEXT_CHANNEL": "聞き専用チャット",
-    "VOICE_CHANNEL": "vc1"
+    "TEXT_CHANNEL": "vc1聞き専用チャット",
+    "VOICE_CHANNEL": "vc1",
+    "READ_NICKNAME": true
 }
