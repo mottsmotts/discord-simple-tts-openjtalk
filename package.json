@@ -14,7 +14,8 @@
     "discord.js": "^12.5.3",
     "ffmpeg-static": "^4.3.0",
     "openjtalk": "^0.1.6",
-    "uuid-v4": "^0.1.0"
+    "uuid-v4": "^0.1.0",
+    "ansi-regex": "3.0.1"
   },
   "scripts": {
     "start": "node index.js"
