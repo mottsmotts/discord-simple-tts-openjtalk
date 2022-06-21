@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
+    "ansi-regex": "^3.0.1",
     "async": "^3.2.2",
     "config": "^3.3.6",
     "discord.js": "^12.5.3",
     "ffmpeg-static": "^4.3.0",
     "openjtalk": "^0.1.6",
-    "uuid-v4": "^0.1.0",
-    "ansi-regex": "3.0.1"
+    "uuid-v4": "^0.1.0"
   },
   "scripts": {
     "start": "node index.js"
